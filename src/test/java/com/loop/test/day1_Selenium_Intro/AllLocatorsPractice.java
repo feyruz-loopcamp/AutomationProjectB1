@@ -32,8 +32,8 @@ public class AllLocatorsPractice {
         WebElement lastName = driver.findElement(By.id("lastName"));
         lastName.sendKeys("Academy");
 
-        WebElement gender = driver.findElement(By.name("gender"));
-        gender.click();
+//        WebElement gender = driver.findElement(By.name("gender"));
+//        gender.click();
 
 
     }
