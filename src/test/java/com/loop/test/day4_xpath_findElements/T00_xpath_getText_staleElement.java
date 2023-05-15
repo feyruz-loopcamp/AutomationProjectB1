@@ -98,6 +98,8 @@ public class T00_xpath_getText_staleElement {
             e.printStackTrace();
         }
 
+        // 1.05
+
 
 
 
