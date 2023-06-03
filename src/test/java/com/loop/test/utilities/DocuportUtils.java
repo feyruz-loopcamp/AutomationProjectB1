@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
 import java.util.InputMismatchException;
 
 public class DocuportUtils {
@@ -15,26 +16,26 @@ public class DocuportUtils {
      * @author nadir
      */
     public static void login(WebDriver driver, String role ){
-        driver.get("https://beta.docuport.app/");
-        WebElement username = driver.findElement(By.xpath("//input[@id='input-14']"));
-        WebElement password = driver.findElement(By.xpath("//input[@id='input-15']"));
+        driver.get(ConfigurationReader.getProperty("env"));
+        WebElement username = driver.findElement(By.xpath("//label[.='Username or email']//following-sibling::input"));
+        WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
         WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
         switch (role.toLowerCase()){
             case "client":
-                username.sendKeys(DocuportConstants.USERNAME_CLIENT);
-                password.sendKeys(DocuportConstants.PASSWORD);
+                username.sendKeys(ConfigurationReader.getProperty("client"));
+                password.sendKeys(ConfigurationReader.getProperty("password"));
                 break;
             case "supervisor":
-                username.sendKeys(DocuportConstants.USERNAME_SUPERVISOR);
-                password.sendKeys(DocuportConstants.PASSWORD);
+                username.sendKeys(ConfigurationReader.getProperty("supervisor"));
+                password.sendKeys(ConfigurationReader.getProperty("password"));
                 break;
             case "advisor":
-                username.sendKeys(DocuportConstants.USERNAME_ADVISOR);
-                password.sendKeys(DocuportConstants.PASSWORD);
+                username.sendKeys(ConfigurationReader.getProperty("advisor"));
+                password.sendKeys(ConfigurationReader.getProperty("password"));
                 break;
             case "employee":
-                username.sendKeys(DocuportConstants.USERNAME_EMPLOYEE);
-                password.sendKeys(DocuportConstants.PASSWORD);
+                username.sendKeys(ConfigurationReader.getProperty("employee"));
+                password.sendKeys(ConfigurationReader.getProperty("password"));
                 break;
             default: throw new InputMismatchException("There is not suc a role: " + role);
         }
@@ -49,8 +50,10 @@ public class DocuportUtils {
     public static void logOut(WebDriver driver){
         WebElement userIcon = driver.findElement(By.xpath("//div[@class='v-avatar primary']"));
         userIcon.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         WebElement logOut = driver.findElement(By.xpath("//span[contains(text(),'Log out')]"));
         logOut.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 }
 
