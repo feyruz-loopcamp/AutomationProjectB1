@@ -16,10 +16,10 @@ public class DocuportUtils {
      * @author nadir
      */
     public static void login(WebDriver driver, String role ){
-        driver.get(ConfigurationReader.getProperty("env"));
-        WebElement username = driver.findElement(By.xpath("//label[.='Username or email']//following-sibling::input"));
-        WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-        WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
+        WebElement username = Driver.getDriver().findElement(By.xpath("//label[.='Username or email']//following-sibling::input"));
+        WebElement password = Driver.getDriver().findElement(By.xpath("//input[@type='password']"));
+        WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[@type='submit']"));
         switch (role.toLowerCase()){
             case "client":
                 username.sendKeys(ConfigurationReader.getProperty("client"));
