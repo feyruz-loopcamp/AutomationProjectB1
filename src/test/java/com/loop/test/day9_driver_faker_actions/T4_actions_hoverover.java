@@ -3,6 +3,7 @@ package com.loop.test.day9_driver_faker_actions;
 import com.loop.test.utilities.ConfigurationReader;
 import com.loop.test.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
@@ -29,6 +30,7 @@ public class T4_actions_hoverover {
         action.moveToElement(feelingLucky).perform();
         Driver.closeDriver();
         Thread.sleep(3000);
+        action.sendKeys(Keys.UP).perform();
     }
 
     // 2pm

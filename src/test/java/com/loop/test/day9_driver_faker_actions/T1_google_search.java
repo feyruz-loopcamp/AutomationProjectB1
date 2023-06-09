@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -34,10 +35,25 @@ public class T1_google_search {
     public void docuport_search(){
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
         System.out.println("((RemoteWebDriver) Driver.getDriver()).getSessionId() = " + ((RemoteWebDriver) Driver.getDriver()).getSessionId());
-        DocuportUtils.login(Driver.getDriver(), "client");
+        DocuportUtils.login(Driver.getDriver(), "advisor");
+        WebElement myUploads = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'My ')]"));
+        myUploads.click();
+
+        WebElement upload =Driver.getDriver().findElement(By.xpath("//span[contains(text(),'Upload d')]"));
+
+        upload.click();
+
+        WebElement file = Driver.getDriver().findElement(By.xpath("(//button[@type='button'])[8]"));
+
+        file.click();
+
+        String path = "/Users/nsh/Desktop/some-file.txt";
+        file.sendKeys(path);
+
+
     }
 
-    @AfterClass
+   // @AfterClass
     public void tearDown(){
         Driver.closeDriver();
     }
